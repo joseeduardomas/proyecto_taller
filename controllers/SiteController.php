@@ -21,9 +21,20 @@ class SiteController extends Controller
             'access' => [
                 'class' => AccessControl::class,
                 'only' => ['logout'],
-                'rules' => [HCASHIADIASigy
+                'rules' => [
                     [
-
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
         ];
     }
 
