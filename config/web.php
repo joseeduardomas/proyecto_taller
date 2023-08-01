@@ -4,7 +4,8 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'proyecto',
+    'name' => 'Proyecto',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -42,14 +43,14 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+         // SIN URL BONITA: http://localhost/proyecto/web/index.php?r=site%2Fabout
+        // CON URL BONITA:  http://localhost/proyecto/web/site/about
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
