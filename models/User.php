@@ -10,6 +10,8 @@ class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
     public $authKey;
     public $accessToken;
 
+    // http://localhost/phpmyadmin
+    // http://localhost/proyecto/web/gii
     private static $users = [
         '100' => [
             'id' => '100',
