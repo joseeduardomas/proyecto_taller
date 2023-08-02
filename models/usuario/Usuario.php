@@ -2,6 +2,7 @@
 
 namespace app\models\usuario;
 
+use app\models\User;
 use Yii;
 
 /**
@@ -16,7 +17,7 @@ use Yii;
  * @property string|null $auth_key
  * @property string|null $access_token
  */
-class Usuario extends \yii\db\ActiveRecord
+class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -53,4 +54,81 @@ class Usuario extends \yii\db\ActiveRecord
             'access_token' => 'Access Token',
         ];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentity($id)
+    {
+        $modeloDeUsuario = Usuario::find()
+            ->where(['id' => $id])
+            ->one();
+
+        return $modeloDeUsuario;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        /*foreach (self::$users as $user) {
+            if ($user['accessToken'] === $token) {
+                return new static($user);
+            }
+        }*/
+
+        return null;
+    }
+
+    /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByUsername($username)
+    {
+        $modeloDeUsuario = Usuario::find()
+            ->where(['username' => $username])
+            ->one();
+
+        return $modeloDeUsuario;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateAuthKey($authKey)
+    {
+        return $this->auth_key === $authKey;
+    }
+
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return bool if password provided is valid for current user
+     */
+    public function validatePassword($password)
+    {
+        return $this->password === md5($password);
+    }
+
 }

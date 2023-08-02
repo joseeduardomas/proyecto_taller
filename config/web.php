@@ -23,8 +23,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            //'identityClass' => 'app\models\usuario\Usuario',
+            //'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\usuario\Usuario',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
