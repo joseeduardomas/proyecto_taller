@@ -70,8 +70,17 @@ class UsuarioController extends Controller
         $model = new Usuario();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load($this->request->post())) {
+                $password_actual = $model->password;
+                $password_encriptada = md5($password_actual);
+
+                //DONDE SE ASIGNA = VALOR ASIGNADO.
+                //PARA ACCEDER A ELEMENTOS SE USA LA FLECHITA - >
+                $model->password = $password_encriptada;
+
+                if($model->save()){
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -92,9 +101,20 @@ class UsuarioController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $password_antigua = $model->password;
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $password_actual = $model->password;
+            // ! =
+            $esDiferenteLaContra = $password_antigua != $password_actual;
+
+            if($esDiferenteLaContra) {
+                $password_encriptada = md5($password_actual);
+                $model->password = $password_encriptada;
+            }
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
