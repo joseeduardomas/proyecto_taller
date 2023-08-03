@@ -86,5 +86,5 @@ return [
 
 **NOTES:**
 - **Yii no crea la base de datos en automatico**, se tiene que generar **manualmente** antes de poder acceder a ella.
-- Para este proyecto podrán buscar el ejemplo de la base de datos en `config/base_de_datos_proyecto.sql`
+- Para este proyecto podrán buscar el ejemplo de la base de datos en `config/proyecto_practica.sql`
 - Recordar que si cambiaron su puerto debe ser especificado, e.g `localhost:8080`
