@@ -12,22 +12,36 @@ use yii\bootstrap5\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nombre')->textInput() ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'nombre')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'primer_apellido')->textInput() ?>
+        <div class="col">
+            <?= $form->field($model, 'primer_apellido')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'segundo_apellido')->textInput() ?>
+        <div class="col">
+            <?= $form->field($model, 'segundo_apellido')->textInput() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'username')->textInput() ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'username')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'password')->passwordInput() ?>
+        <div class="col">
+            <?= $form->field($model, 'password')->passwordInput() ?>
+        </div>
+    </div>
 
     <?php // $form->field($model, 'auth_key')->textarea(['rows' => 6]) ?>
 
     <?php // $form->field($model, 'access_token')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
