@@ -59,6 +59,15 @@ nombrado en la carpeta principal.
 http://localhost/proyecto/web/
 ~~~
 
+~~~
+Usuario: demo
+Contraseña: demo
+
+Usuario: admin
+Contraseña: admin
+~~~
+
+
 ### Tener en cuenta lo siguiente: 
 1. Recordar que el proyecto debe ser clonada en la carpeta de su servidior de aplicaciones, e.g **APACHE (Dentro de la carpeta htdocs)**
 2. Deberán tener previamente instalado **Composer**
@@ -73,7 +82,13 @@ Configuración
 ### Base de datos
 
 Editar el archivo `config/db.php` con datos reales, por ejemplo:
+~~~
+Usuario: demo
+Contraseña: demo
 
+Usuario: admin
+Contraseña: admin
+~~~
 ```php
 return [
     'class' => 'yii\db\Connection',
