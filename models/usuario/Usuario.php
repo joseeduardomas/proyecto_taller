@@ -16,9 +16,14 @@ use Yii;
  * @property string $password
  * @property string|null $auth_key
  * @property string|null $access_token
+ * @property int $status
  */
 class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+
+    const STATUS_INACTIVO = 0;
+    const STATUS_ACTIVO = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -34,6 +39,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             [['nombre', 'primer_apellido', 'username', 'password'], 'required'],
+            [['status'], 'integer'],
             [['nombre', 'primer_apellido', 'segundo_apellido', 'username', 'password', 'auth_key', 'access_token'], 'string'],
         ];
     }
@@ -52,6 +58,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'password' => 'Contraseña',
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
+            'status' => 'Estatus',
         ];
     }
 
@@ -129,6 +136,16 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return $this->password === md5($password);
+    }
+
+
+    /**
+     * Validates status
+     *
+     * @return bool Si el usuario se encuentra activo actualmente
+     */
+    public function isActivo(){
+        return $this->status === self::STATUS_ACTIVO;
     }
 
 }

@@ -26,7 +26,8 @@ class UsuarioController extends Controller
                     'class' => AccessControl::class,
                     'rules' => [
                         [
-                            'actions' => ['index','create', 'update', 'view', 'delete'],
+                            'actions' => ['index','create', 'update', 'view', 'delete',
+                                'index-modificado'],
                             'allow' => true,
                             'roles' => ['@'],
                         ],
@@ -53,6 +54,22 @@ class UsuarioController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all Usuario models.
+     *
+     * @return string
+     */
+    public function actionIndexModificado()
+    {
+        $searchModel = new UsuarioSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('index_modificado', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -151,9 +168,17 @@ class UsuarioController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        //Si esta activo, si actualmente esta en 1 la bandera se cambia a 0
+        if($model->isActivo()){
+            $model->status = Usuario::STATUS_INACTIVO;
+        } else {
+            $model->status = Usuario::STATUS_ACTIVO;
+        }
+        $model->save();
+
+        return $this->redirect(['usuario/index-modificado']);
     }
 
     /**

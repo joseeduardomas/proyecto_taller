@@ -8,7 +8,7 @@ use yii\widgets\DetailView;
 
 //$this->title = $model->id;
 $this->title = $model->nombre;
-$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index-modificado']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -17,14 +17,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1 class="text-center"><?= Html::encode($model->nombre) ?></h1>
 
     <p class="text-center">
-        <?= Html::a('Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Borrar', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => '¿Esta seguro de querer eliminar el siguiente elemento?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?= Html::a('<i class="fa-solid fa-pen-to-square"></i> Modificar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?php if ($model->isActivo()) {
+            echo Html::a('<i class="fa-solid fa-square-minus"></i> Desactivar', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', '¿Seguro que deseas desactivar este elemento?'),
+                    'method' => 'post',
+                ],
+            ]);
+        } else {
+            echo Html::a('<i class="fa-solid fa-rotate"></i> Activar', ['delete', 'id' => $model->id], [
+                'class'=>'btn btn-warning',
+                'data' => [
+                    'confirm' => Yii::t('app', '¿Seguro que deseas activar este elemento?'),
+                    'method' => 'post',
+                ],
+            ]);
+        } ?>
     </p>
 
     <hr>

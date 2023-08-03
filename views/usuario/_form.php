@@ -41,7 +41,7 @@ use yii\bootstrap5\ActiveForm;
     <?php // $form->field($model, 'access_token')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('<i class="fa-solid fa-floppy-disk"></i> Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

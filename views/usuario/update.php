@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var app\models\usuario\Usuario $model */
 
 $this->title = 'Modificar Usuario: #' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index-modificado']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Modificar';
 ?>
