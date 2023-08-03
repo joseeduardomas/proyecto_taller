@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/42184292?v=4" height="100px">
+        <img src="web/img/logo.png" height="100px">
     </a>
     <h1 align="center">Proyecto realizado en taller de Yii2</h1>
     <br>
