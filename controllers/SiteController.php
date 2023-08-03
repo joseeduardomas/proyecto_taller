@@ -71,6 +71,9 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        //CON ESTO INDICAMOS LA PLANTILLA A UTILIZAR, LO CAMBIE PARA QUE SE VEA MEJOR EL LOGIN
+        $this->layout = "blank";
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
