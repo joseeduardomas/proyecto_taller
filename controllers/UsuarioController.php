@@ -82,6 +82,9 @@ class UsuarioController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
+                //PONEMOS EN MINUSCULA EL NOMBRE DE USUARIO PARA QUE SEA MAS FACIL VALIDAR POSTERIORMENTE
+                $model->username = mb_strtolower($model->username, 'UTF-8');
+
                 $password_actual = $model->password;
                 $password_encriptada = md5($password_actual);
 
@@ -112,11 +115,17 @@ class UsuarioController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        //Contraseña tal cual esta en la BASE DE DATOS
         $password_antigua = $model->password;
 
         if ($this->request->isPost && $model->load($this->request->post())) {
+            //PONEMOS EN MINUSCULA EL NOMBRE DE USUARIO PARA QUE SEA MAS FACIL VALIDAR POSTERIORMENTE
+            $model->username = mb_strtolower($model->username, 'UTF-8');
+
+            //Contraseña que le pasamos a travez del formulario
             $password_actual = $model->password;
-            // ! =
+            //Se compara si el campo es diferente, en caso de ser así se tendrá que volver a encriptar
+            //Porque se considera una nueva contraseña
             $esDiferenteLaContra = $password_antigua != $password_actual;
 
             if($esDiferenteLaContra) {
